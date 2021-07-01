@@ -1,0 +1,72 @@
+/*  HEADER  */
+.header {
+  background-color: white;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.33);
+  color: black;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*  MENUBAR  */
+
+.menuBar {
+  display: flex;
+  align-items: center;
+
+  width: 75%;
+  height: 100%;
+}
+
+.menuBar > a {
+  margin-left: 7.5%;
+}
+
+/*  LOGIN  */
+
+.login > button {
+  background-color: black;
+  color: white;
+
+  margin-right: 10px;
+}
+
+.login > button:hover {
+  background-color: var(--main-red);
+  background-color: white;
+  color: black;
+}
+
+/*  MOBILE  */
+
+.hamburger {
+  display: none;
+  margin-right: 10px;
+}
+
+.hamburgerRow {
+    width: 35px;
+    height: 5px;
+    border-radius: 25px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .menuBar {
+    display: none;
+  }
+
+  .login > button {
+    background-color: black;
+    color: white;
+
+    margin-right: 0;
+    margin-left: 10px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
