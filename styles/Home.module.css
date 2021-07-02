@@ -9,6 +9,20 @@
   justify-content: space-between;
 }
 
+/*  FEED  */
+
+.feed {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: 10px 10px; 
+  grid-template-areas: 
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . ."; 
+}
+
 /*  MENUBAR  */
 
 .menuBar {
@@ -69,4 +83,35 @@
   .hamburger {
     display: block;
   }
+}
+
+@media screen and (max-width: 988px) {
+    .feed {
+          display: grid; 
+          grid-template-columns: 1fr 1fr 1fr; 
+          grid-template-rows: 1fr 1fr 1fr; 
+          gap: 10px 10px; 
+          grid-template-areas: 
+              ". . ."
+              ". . ."
+              ". . ."; 
+    }
+}
+
+@media screen and (max-width: 705px) {
+    .feed {
+          display: grid; 
+          grid-template-columns: 1fr 1fr; 
+          grid-template-rows: 1fr 1fr; 
+          gap: 10px 10px; 
+          grid-template-areas: 
+            ". ."
+            ". ."; 
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .feed {
+          display: block;
+    }
 }
