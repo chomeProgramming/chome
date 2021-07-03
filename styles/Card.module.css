@@ -1,10 +1,17 @@
 .content {
+    transition: 0.5s;
     background-color: white;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.33);
     border-radius: 15px;
 
     margin-left: 12.5px;
     margin-right: 12.5px;
+}
+
+.content:hover {
+    transition: 0.5s;
+    transform: scale(1.04);
+    box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.55);
 }
 
 .content > h2 {
