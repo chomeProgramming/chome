@@ -4,7 +4,7 @@ import styles from '../styles/Card.module.css'
 import { Button } from '@material-ui/core';
 import Image from 'next/image'
 
-export default function Card({ name, img, link, placeholder }) {
+export default function Card({ name, img, link }) {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
