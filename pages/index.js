@@ -15,8 +15,7 @@ export default function Home() {
 
       <div className={styles.header}>
         <div className={styles.menuBar}>
-          <a href="/projects">PROJECTS</a>
-          <a href="/standings">GITHUB</a>
+          <a href="/standings">HIRE US</a>
           <a href="/about">ABOUT US</a>
         </div>
 
@@ -26,9 +25,9 @@ export default function Home() {
         </div>
 
         <div className={styles.hamburger}>
-          <div className={styles.hamburgerRow}></div>
-          <div className={styles.hamburgerRow}></div>
-          <div className={styles.hamburgerRow}></div>
+          <div className={styles.hamburgerRow1}></div>
+          <div className={styles.hamburgerRow2}></div>
+          <div className={styles.hamburgerRow3}></div>
         </div>
       </div>
 
