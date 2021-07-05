@@ -5,6 +5,7 @@ import { Button, Input } from '@material-ui/core'
 import Card from '../components/Card'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
+import cookie from 'react-cookie'
 
 function getModalStyle() {
   const top = 50
@@ -56,6 +57,20 @@ export default function Home() {
     console.log(username)
   }
 
+  const signup = () => {
+    // fetch("http://6.tcp.ngrok.io:16093/user/signup", {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify({
+    //     email: "",
+    //     username: "",
+    //     password: ""
+    //   })
+    // })
+    //   .then(result => result.json())
+    //   .then(result => console.log("signup request", result))
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -85,7 +100,7 @@ export default function Home() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button onClick={() => consolelog()}>LOGIN</Button>
+            <Button onClick={() => setCookie(60)}>LOGIN</Button>
           </div>
         </div>
       </Modal>
@@ -116,7 +131,13 @@ export default function Home() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button onClick={() => consolelog()}>SIGN UP</Button>
+            {/* <Button onClick={() => signup()}>SIGN UP</Button> */}
+            <form action="http://6.tcp.ngrok.io:16093/user/signup" method="POST">
+              <input type="email" name="email"></input>
+              <input name="username"></input>
+              <input name="password"></input>
+              <input type="submit" value="Sign Up"></input>
+            </form>
           </div>
         </div>
       </Modal>
