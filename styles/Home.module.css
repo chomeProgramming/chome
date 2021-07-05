@@ -43,6 +43,8 @@
   background-color: black;
   color: white;
 
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.33);
+
   margin-right: 10px;
 }
 
@@ -56,6 +58,7 @@
 
 .hamburger {
   display: none;
+  margin-right: 10px;
 }
 
 .hamburger:hover .hamburgerRow1 {
@@ -80,7 +83,7 @@
     border-radius: 25px;
     background-color: black;
     margin: 6px 0;
-    box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.66);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.22);
 }
 
 .hamburgerRow2 {
@@ -90,7 +93,7 @@
     border-radius: 25px;
     background-color: black;
     margin: 6px 0;
-    box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.66);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.22);
 }
 
 .hamburgerRow3 {
@@ -100,7 +103,36 @@
     border-radius: 25px;
     background-color: black;
     margin: 6px 0;
-    box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.66);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.22);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalInfo > button {
+  background-color: black;
+  color: white;
+
+  margin: 15px;
+
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.33);
+}
+
+.modalInfo > button:hover {
+  background-color: white;
+  color: black;
+
+  margin: 15px;
+
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.33);
 }
 
 @media screen and (max-width: 768px) {
