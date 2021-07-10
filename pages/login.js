@@ -6,7 +6,7 @@ export default function login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const login = e => {
+    const login = (e) => {
         e.preventDefault()
         const data = {
             username: username,
