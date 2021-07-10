@@ -24,14 +24,13 @@ export default function Login() {
         // })
         // fetch ("https://chome-backend.herokuapp.com/user/signin", {
         // fetch ("http://8.tcp.ngrok.io:15848/user/signin", {
-        fetch ("http://localhost:8000/user/signin", {
+        fetch ("https://chome-backend.herokuapp.com/user/signin", {
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             method: "POST",
             body: JSON.stringify({
                 email_username: username,
                 password: password,
             }),
-            redirect: "follow"
         })
             .then(response => response.json())
             .then(response => console.log(response))
