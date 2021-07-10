@@ -10,8 +10,14 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+<<<<<<< HEAD
     "next": "^11.0.1",
+=======
+    "bootstrap": "^5.0.0-beta3",
+    "next": "11.0.1",
+>>>>>>> 8efbc051a248ad892334212c67a1307776f8a95c
     "react": "17.0.2",
+    "react-cookie": "^4.0.3",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
