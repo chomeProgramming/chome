@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styles from '../styles/Login.module.css'
 import axios from 'axios'
 
-export default function login() {
+export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
