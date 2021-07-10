@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import styles from '../styles/Login.module.css'
 import axios from 'axios'
+// import NextCors from 'nextjs-cors'
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const signin = (e) => {
+    const signin = async (e) => {
         // const data = {
         //     username: username,
         //     password: password
@@ -14,7 +16,15 @@ export default function Login() {
         
         // axios.post("https://chome-backend.herokuapp.com/user/signin", data)
         //     .then(response => console.log(response.data))
-        fetch ("https://chome-backend.herokuapp.com/user/signin", {
+        // await NextCors(req, res, {
+        //     // Options
+        //     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+        //     origin: '*',
+        //     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+        // })
+        // fetch ("https://chome-backend.herokuapp.com/user/signin", {
+        // fetch ("http://8.tcp.ngrok.io:15848/user/signin", {
+        fetch ("http://localhost:8000/user/signin", {
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             method: "POST",
             body: JSON.stringify({
