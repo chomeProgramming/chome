@@ -7,13 +7,24 @@ export default function Login() {
     const [password, setPassword] = useState("")
 
     const signin = (e) => {
-        const data = {
-            username: username,
-            password: password
-        }
+        // const data = {
+        //     username: username,
+        //     password: password
+        // }
         
-        axios.post("https://chome-backend.herokuapp.com/signin", data)
-            .then(response => console.log(response.data))
+        // axios.post("https://chome-backend.herokuapp.com/user/signin", data)
+        //     .then(response => console.log(response.data))
+        fetch ("https://chome-backend.herokuapp.com/user/signin", {
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            method: "POST",
+            body: JSON.stringify({
+                email_username: username,
+                password: password,
+            }),
+            redirect: "follow"
+        })
+            .then(response => response.json())
+            .then(response => console.log(response))
 
         e.preventDefault()
     }
