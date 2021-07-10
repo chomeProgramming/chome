@@ -6,7 +6,7 @@ export default function login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const login = (e) => {
+    const signin = (e) => {
         e.preventDefault()
         const data = {
             username: username,
@@ -38,7 +38,7 @@ export default function login() {
                                         <label for="password">Password</label>
                                     </div>
                                     <div className="d-grid gap-2 mb-3">
-                                        <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={login}>Sign In</button>
+                                        <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={() => signin(e)}>Sign In</button>
                                     </div>
                                     <div className="forgot-password-link mb-3 text-right" style={{textAlign: "right"}}>
                                         <a href="#" title="Forgot Password" className="text-decoration-none">Forgot Password?</a>
