@@ -9,6 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState("")
 
     const signin = async (e) => {
+        e.preventDefault()
         // const data = {
         //     username: username,
         //     password: password
@@ -24,18 +25,16 @@ export default function Login() {
         // })
         // fetch ("https://chome-backend.herokuapp.com/user/signin", {
         // fetch ("http://8.tcp.ngrok.io:15848/user/signin", {
-        fetch ("https://chome-backend.herokuapp.com/user/signin", {
+        console.log( await fetch ("https://localhost:8000/user/signin", {
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             method: "POST",
             body: JSON.stringify({
                 email_username: username,
                 password: password,
             }),
-        })
-            .then(response => response.json())
-            .then(response => console.log(response))
-
-        e.preventDefault()
+        }) )
+            // .then(response => response.json())
+            // .then(response => console.log(response))
     }
 
     return (
