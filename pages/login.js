@@ -7,7 +7,6 @@ export default function Login() {
     const [password, setPassword] = useState("")
 
     const signin = (e) => {
-        e.preventDefault()
         const data = {
             username: username,
             password: password
@@ -15,6 +14,8 @@ export default function Login() {
         
         axios.post("https://chome-backend.herokuapp.com/signin", data)
             .then(response => console.log(response.data))
+
+        e.preventDefault()
     }
 
     return (
@@ -38,7 +39,7 @@ export default function Login() {
                                         <label>Password</label>
                                     </div>
                                     <div className="d-grid gap-2 mb-3">
-                                        <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={() => signin(e)}>Sign In</button>
+                                        <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={signin}>Sign In</button>
                                     </div>
                                     <div className="forgot-password-link mb-3 text-right" style={{textAlign: "right"}}>
                                         <a href="#" title="Forgot Password" className="text-decoration-none">Forgot Password?</a>
