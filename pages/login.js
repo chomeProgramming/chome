@@ -31,11 +31,11 @@ export default function Login() {
                                     <div className="form-floating mb-3">
                                         {/* <input type="text" id="login_username_email" value="{{inputData.username_email}}" className="form-control rounded-0" placeholder="Username/Email" /> */}
                                         <input type="text" id="login_username_email" className="form-control rounded-0" placeholder="Username/Email" value={username} onChange={(e) => setUsername(e.target.value)} />
-                                        <label for="username">Username / Email</label>
+                                        <label>Username / Email</label>
                                     </div>
                                     <div className="form-floating mb-3">
                                         <input type="password" id="login_password" className="form-control rounded-0" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                                        <label for="password">Password</label>
+                                        <label>Password</label>
                                     </div>
                                     <div className="d-grid gap-2 mb-3">
                                         <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={() => signin(e)}>Sign In</button>
