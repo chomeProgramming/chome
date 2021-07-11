@@ -8,33 +8,35 @@ export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const signin = async (e) => {
+    const signin = (e) => {
         e.preventDefault()
-        // const data = {
-        //     username: username,
-        //     password: password
-        // }
-        
-        // axios.post("https://chome-backend.herokuapp.com/user/signin", data)
-        //     .then(response => console.log(response.data))
-        // await NextCors(req, res, {
-        //     // Options
-        //     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-        //     origin: '*',
-        //     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-        // })
-        // fetch ("https://chome-backend.herokuapp.com/user/signin", {
-        // fetch ("http://8.tcp.ngrok.io:15848/user/signin", {
-        console.log( await fetch ("https://localhost:8000/user/signin", {
-            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        var details = {
+            email_username: username,
+            password: password
+        }
+        var formBody = []
+        for (var property in details) {
+            var encodedKey = encodeURIComponent(property)
+            var encodedValue = encodeURIComponent(details[property])
+            formBody.push(encodedKey + "=" + encodedValue)
+        }
+        formBody = formBody.join("&")
+
+        fetch ("http://localhost:8000/user/signin", {
             method: "POST",
-            body: JSON.stringify({
-                email_username: username,
-                password: password,
-            }),
-        }) )
-            // .then(response => response.json())
-            // .then(response => console.log(response))
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                'Accept': 'application/json'
+            },
+            body: formBody,
+        })
+            .then(response => response.json())
+            .then(response => {
+
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
