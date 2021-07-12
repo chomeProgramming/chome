@@ -9,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState("")
 
     const signin = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         var details = {
             email_username: username,
             password: password
@@ -32,7 +32,8 @@ export default function Login() {
         })
             .then(response => response.json())
             .then(response => {
-
+                console.log(response)
+                window.location.href = "/"
             })
             .catch(err => {
                 console.log(err)
