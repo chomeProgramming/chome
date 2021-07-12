@@ -7,6 +7,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 export default function Signup() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [email, setEmail] = useState("")
 
     const signup = async (e) => {
@@ -14,7 +15,8 @@ export default function Signup() {
         var details = {
             email,
             username,
-            password
+            password,
+            confirmPassword
         }
         var formBody = []
         for (var property in details) {
@@ -40,18 +42,18 @@ export default function Signup() {
                     window.close()
                 } else {
                     console.log(response.msg)
+                    document.getElementById("errMessage").innerHTML = response.msg
                 }
             })
             .catch(err => {
                 console.log(err)
             })
     }
-
     useEffect(() => {
-        if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && email == "" && username == "" && password == "") {
-            document.getElementById("button").disabled = true;
+        if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) || email == "" || username == "" || password == "" || password.length < 8 || confirmPassword !== password) {
+            document.getElementById("submit-button").disabled = true;
         } else {
-            document.getElementById("button").disabled = false;
+            document.getElementById("submit-button").disabled = false;
         }
     }, [username, email, password])
 
@@ -66,8 +68,8 @@ export default function Signup() {
                             <div className="box shadow bg-white p-4 rounded">
                                 <h3 className="mb-4 text-center fs-1">Sign Up</h3>
                                 <form action="/login" method="POST" className="mb-3">
-                                    <h9 style={{ color: "red", textAlign: "center" }}>errMessage</h9>
-                                    <h9 style={{ color: "green", textAlign: "center" }}>okMessage</h9>
+                                    <h9 style={{ color: "red", textAlign: "center" }} id="errMessage"></h9>
+                                    {/* <h9 style={{ color: "green", textAlign: "center" }}>okMessage</h9> */}
                                     <div className="form-floating mb-3">
                                         {/* <input type="text" id="login_username_email" value="{{inputData.username_email}}" className="form-control rounded-0" placeholder="Username/Email" /> */}
                                         <input type="email" className="form-control rounded-0" placeholder="Username/Email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" />
@@ -81,8 +83,12 @@ export default function Signup() {
                                         <input type="password" className="form-control rounded-0" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" />
                                         <label>Password</label>
                                     </div>
+                                    <div className="form-floating mb-3">
+                                        <input type="password" className="form-control rounded-0" placeholder="Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} id="confirm_password" />
+                                        <label>Cofirm Password</label>
+                                    </div>
                                     <div className="d-grid gap-2 mb-3">
-                                        <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={signup} id="button">Sign Up</button>
+                                        <button type="submit" className="btn btn-dark border-0 rounded-0" onClick={signup} id="submit-button">Sign Up</button>
                                     </div>
                                 </form>
                                 <div className="forgot-password-link mb-3 text-center" style={{ textAlign: "center" }}>

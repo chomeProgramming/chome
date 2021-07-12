@@ -72,11 +72,11 @@ export default function Home() {
   }
 
   const openSignIn = () => {
-    window.open("/signin", "", "width=400,height=500");
+    window.open("/signin", "", "width=400,height=600");
   }
 
   const openSignUp = () => {
-    window.open("/signup", "", "width=400,height=500");
+    window.open("/signup", "", "width=400,height=550");
   }
 
   return (
