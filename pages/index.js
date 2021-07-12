@@ -72,11 +72,11 @@ export default function Home() {
   }
 
   const openSignIn = () => {
-    window.open("http://localhost:8000/login", "", "width=400,height=500");
+    window.open("/signin", "", "width=400,height=500");
   }
 
   const openSignUp = () => {
-    window.open("https://chome.vercel.app/login", "", "width=200,height=100");
+    window.open("/signup", "", "width=400,height=500");
   }
 
   return (
