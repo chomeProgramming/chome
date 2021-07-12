@@ -71,6 +71,14 @@ export default function Home() {
     //   .then(result => console.log("signup request", result))
   }
 
+  const openSignIn = () => {
+    window.open("http://localhost:8000/login", "", "width=400,height=500");
+  }
+
+  const openSignUp = () => {
+    window.open("https://chome.vercel.app/login", "", "width=200,height=100");
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -150,8 +158,8 @@ export default function Home() {
           </div>
 
           <div className={styles.login}>
-            <Button onClick={() => setOpen(true)}>LOGIN</Button>
-            <Button onClick={() => setOpen2(true)}>SIGN UP</Button>
+            <Button onClick={openSignIn}>LOGIN</Button>
+            <Button onClick={openSignUp}>SIGN UP</Button>
           </div>
 
           <div className={styles.hamburger}>
