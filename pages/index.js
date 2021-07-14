@@ -81,7 +81,7 @@ export default function Home() {
   function openPopupPage(relativeUrl)
   {
     var param = {  };
-    OpenWindowWithPost(relativeUrl, "width=400, height=550, left=200, top=50, resizable=no, scrollbars=no", "NewFile", param);
+    OpenWindowWithPost(relativeUrl, "width=400, height=550, left=200, top=50, resizable=no, scrollbars=yes", "NewFile", param);
   }
   function OpenWindowWithPost(url, windowoption, name, params)
   {
@@ -187,10 +187,10 @@ export default function Home() {
           </div>
 
           <div className={styles.login}>
-            {/* <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signup') }>SIGN UP</Button> */}
-            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signup') }>SIGN UP</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signup') }>SIGN UP</Button>
+            {/* <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signup') }>SIGN UP</Button> */}
           </div>
 
           <div className={styles.hamburger}>
