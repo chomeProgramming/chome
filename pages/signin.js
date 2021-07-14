@@ -59,7 +59,7 @@ export default function Signin() {
                             <div className="box shadow bg-white p-4 rounded">
                                 <h3 className="mb-4 text-center fs-1">Sign In</h3>
                                 <form action="/login" method="POST" className="mb-3">
-                                    <h9 style={{ color: "red", textAlign: "center" }}  id="errMessage">errMessage</h9>
+                                    <h9 style={{ color: "red", textAlign: "center" }}  id="errMessage"></h9>
                                     {/* <h9 style={{ color: "green", textAlign: "center" }}>okMessage</h9> */}
                                     <div className="form-floating mb-3">
                                         {/* <input type="text" id="login_username_email" value="{{inputData.username_email}}" className="form-control rounded-0" placeholder="Username/Email" /> */}

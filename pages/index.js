@@ -72,11 +72,40 @@ export default function Home() {
   }
 
   const openSignIn = () => {
-    window.open("/signin", "", "width=400,height=600");
+    window.open("/signin", "", "width=400,height=550");
   }
 
   const openSignUp = () => {
     window.open("/signup", "", "width=400,height=550");
+  }
+  function openPopupPage(relativeUrl)
+  {
+    var param = {  };
+    OpenWindowWithPost(relativeUrl, "width=400, height=550, left=200, top=50, resizable=no, scrollbars=no", "NewFile", param);
+  }
+  function OpenWindowWithPost(url, windowoption, name, params)
+  {
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", url);
+    form.setAttribute("target", name);
+    for (var i in params)
+    {
+      if (params.hasOwnProperty(i))
+      {
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = i;
+        input.value = params[i];
+        form.appendChild(input);
+      }
+    }
+    document.body.appendChild(form);
+    //note I am using a post.htm page since I did not want to make double request to the page 
+    //it might have some Page_Load call which might screw things up.
+    window.open("post.htm", name, windowoption);
+    form.submit();
+    document.body.removeChild(form);
   }
 
   return (
@@ -158,8 +187,8 @@ export default function Home() {
           </div>
 
           <div className={styles.login}>
-            <Button onClick={openSignIn}>LOGIN</Button>
-            <Button onClick={openSignUp}>SIGN UP</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signup') }>SIGN UP</Button>
           </div>
 
           <div className={styles.hamburger}>
