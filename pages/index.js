@@ -187,10 +187,10 @@ export default function Home() {
           </div>
 
           <div className={styles.login}>
-            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signup') }>SIGN UP</Button>
-            {/* <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signup') }>SIGN UP</Button> */}
+            {/* <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signup') }>SIGN UP</Button> */}
+            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signup') }>SIGN UP</Button>
           </div>
 
           <div className={styles.hamburger}>
