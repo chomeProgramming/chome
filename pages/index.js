@@ -7,6 +7,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import cookie from 'react-cookie'
 
+import getCookieJS from '../scripts/getCookie.js'
+
+const fetchUrl = "http://localhost:8000"
+
 function getModalStyle() {
   const top = 50
   const left = 50
@@ -107,6 +111,15 @@ export default function Home() {
     form.submit();
     document.body.removeChild(form);
   }
+  useEffect(() => {
+    fetch (fetchUrl+"/user/authUser", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ accessToken: getCookieJS().accessToken })
+    })
+      .then(response => response.json())
+      .then(response => console.log(response))
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -187,10 +200,10 @@ export default function Home() {
           </div>
 
           <div className={styles.login}>
-            {/* <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('http://localhost:8000/pages/signup') }>SIGN UP</Button> */}
-            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/pages/signup') }>SIGN UP</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('http://localhost:8000/signup') }>SIGN UP</Button>
+            {/* <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/signup') }>SIGN UP</Button> */}
           </div>
 
           <div className={styles.hamburger}>
