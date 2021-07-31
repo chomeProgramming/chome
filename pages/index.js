@@ -10,6 +10,7 @@ import cookie from 'react-cookie'
 import getCookieJS from '../scripts/getCookie.js'
 
 const fetchUrl = "http://localhost:8000"
+// const fetchUrl = "https://chome-backend.herokuapp.com"
 
 function getModalStyle() {
   const top = 50
@@ -61,65 +62,32 @@ export default function Home() {
     console.log(username)
   }
 
-  const signup = () => {
-    // fetch("http://6.tcp.ngrok.io:16093/user/signup", {
-    //   method: "POST",
-    //   headers: { "content-type": "application/json" },
-    //   body: JSON.stringify({
-    //     email: "",
-    //     username: "",
-    //     password: ""
-    //   })
-    // })
-    //   .then(result => result.json())
-    //   .then(result => console.log("signup request", result))
+  async function getAuthUser() {
+    return await (await fetch (fetchUrl+"/user/authUser", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ accessToken: getCookieJS().accessToken })
+    }) ).json()
   }
 
-  const openSignIn = () => {
-    window.open("/signin", "", "width=400,height=550");
-  }
-
-  const openSignUp = () => {
-    window.open("/signup", "", "width=400,height=550");
-  }
   function openPopupPage(relativeUrl)
   {
     var param = {  };
-    OpenWindowWithPost(relativeUrl, "width=400, height=550, left=200, top=50, resizable=no, scrollbars=yes", "NewFile", param);
+    OpenWindowWithPost(fetchUrl+relativeUrl, "width=400, height=550, left=200, top=50, resizable=no, scrollbars=yes", "NewFile", param);
   }
-  function OpenWindowWithPost(url, windowoption, name, params)
+
+  async function OpenWindowWithPost(url, windowoption, name, params)
   {
-    var form = document.createElement("form");
-    form.setAttribute("method", "post");
-    form.setAttribute("action", url);
-    form.setAttribute("target", name);
-    for (var i in params)
-    {
-      if (params.hasOwnProperty(i))
-      {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = i;
-        input.value = params[i];
-        form.appendChild(input);
+    let authUser = await getAuthUser()
+    let popup = window.open(url, name, windowoption);
+    var checkPopupClosing = setInterval(async () => {
+      if (popup.closed) {
+        clearInterval(checkPopupClosing)
+        if ((await getAuthUser() == null) !== (authUser == null))
+          window.location.reload()
       }
-    }
-    document.body.appendChild(form);
-    //note I am using a post.htm page since I did not want to make double request to the page 
-    //it might have some Page_Load call which might screw things up.
-    window.open("post.htm", name, windowoption);
-    form.submit();
-    document.body.removeChild(form);
+    }, 200)
   }
-  useEffect(() => {
-    fetch (fetchUrl+"/user/authUser", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ accessToken: getCookieJS().accessToken })
-    })
-      .then(response => response.json())
-      .then(response => console.log(response))
-  }, [])
 
   return (
     <div className={styles.container}>
@@ -128,70 +96,6 @@ export default function Home() {
         <meta name="description" content="This is the official site of chomeProgramming" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <div style={modalStyle} className={classes.paper}>
-          <div className={styles.modalHeader}>
-            <h2>LOGIN</h2>
-            <Button onClick={log2sign}>SIGN UP INSTEAD</Button>
-          </div>
-
-          <div className={styles.modalInfo}>
-            <Input
-              placeholder='USERNAME'
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              placeholder='PASSOWORD'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button onClick={() => setCookie(60)}>LOGIN</Button>
-          </div>
-        </div>
-      </Modal>
-
-      <Modal
-        open={open2}
-        onClose={() => setOpen2(false)}
-      >
-        <div style={modalStyle} className={classes.paper}>
-          <div className={styles.modalHeader}>
-            <h2>SIGN UP</h2>
-            <Button onClick={sign2log}>LOGIN INSTEAD</Button>
-          </div>
-
-          <div className={styles.modalInfo}>
-            <Input
-              placeholder='EMAIL'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder='USERNAME'
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              placeholder='PASSOWORD'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {/* <Button onClick={() => signup()}>SIGN UP</Button> */}
-            <form action="http://6.tcp.ngrok.io:16093/user/signup" method="POST">
-              <input type="email" name="email"></input>
-              <input name="username"></input>
-              <input name="password"></input>
-              <input type="submit" value="Sign Up"></input>
-            </form>
-          </div>
-        </div>
-      </Modal>
-
       <main>
         <div className={styles.header}>
           <div className={styles.menuBar}>
@@ -200,10 +104,8 @@ export default function Home() {
           </div>
 
           <div className={styles.login}>
-            <Button onClick={ () => openPopupPage('http://localhost:8000/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('http://localhost:8000/signup') }>SIGN UP</Button>
-            {/* <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('https://chome-backend.herokuapp.com/signup') }>SIGN UP</Button> */}
+            <Button onClick={ () => openPopupPage('/signin') }>SIGN IN</Button>
+            <Button onClick={ () => openPopupPage('/signup') }>SIGN UP</Button>
           </div>
 
           <div className={styles.hamburger}>
