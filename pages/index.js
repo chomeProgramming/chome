@@ -38,9 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles()
-  // const [modalStyle] = useState(getModalStyle)
-  // const [open, setOpen] = useState(false)
-  // const [open2, setOpen2] = useState(false)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -49,21 +46,6 @@ export default function Home() {
   const [isReady, setIsReady] = useState(false)
   const [authUser, setAuthUser] = useState("")
 
-  // const sign2log = () => {
-  //   setOpen(true)
-  //   setOpen2(false)
-  // }
-
-  // const log2sign = () => {
-  //   setOpen(false)
-  //   setOpen2(true)
-  // }
-
-  // const consolelog = () => {
-  //   console.log(email)
-  //   console.log(password)
-  //   console.log(username)
-  // }
   async function getAuthUser() {
     return await (await fetch (fetchUrl+"/user/authUser", {
       method: "POST",
@@ -97,7 +79,6 @@ export default function Home() {
   }, [])
 
   function AuthUserButtons() {
-    console.log("getting authUser: ", authUser)
     if (authUser == null) {
       return (
         <div className={styles.login}>
