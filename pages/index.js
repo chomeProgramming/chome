@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactDOM } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { Button, Input } from '@material-ui/core'
@@ -38,30 +38,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles()
-  const [modalStyle] = useState(getModalStyle)
-  const [open, setOpen] = useState(false)
-  const [open2, setOpen2] = useState(false)
+  // const [modalStyle] = useState(getModalStyle)
+  // const [open, setOpen] = useState(false)
+  // const [open2, setOpen2] = useState(false)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
 
-  const sign2log = () => {
-    setOpen(true)
-    setOpen2(false)
-  }
+  const [isReady, setIsReady] = useState(false)
+  const [authUser, setAuthUser] = useState("")
 
-  const log2sign = () => {
-    setOpen(false)
-    setOpen2(true)
-  }
+  // const sign2log = () => {
+  //   setOpen(true)
+  //   setOpen2(false)
+  // }
 
-  const consolelog = () => {
-    console.log(email)
-    console.log(password)
-    console.log(username)
-  }
+  // const log2sign = () => {
+  //   setOpen(false)
+  //   setOpen2(true)
+  // }
 
+  // const consolelog = () => {
+  //   console.log(email)
+  //   console.log(password)
+  //   console.log(username)
+  // }
   async function getAuthUser() {
     return await (await fetch (fetchUrl+"/user/authUser", {
       method: "POST",
@@ -78,17 +80,44 @@ export default function Home() {
 
   async function OpenWindowWithPost(url, windowoption, name, params)
   {
-    let authUser = await getAuthUser()
+    let lv_authUser = await getAuthUser()
     let popup = window.open(url, name, windowoption);
     var checkPopupClosing = setInterval(async () => {
       if (popup.closed) {
         clearInterval(checkPopupClosing)
-        if ((await getAuthUser() == null) !== (authUser == null))
+        if ((await getAuthUser() == null) !== (lv_authUser == null))
           window.location.reload()
       }
     }, 200)
   }
 
+  useEffect(async () => {
+    await setAuthUser(await getAuthUser())
+    setIsReady(true)
+  }, [])
+
+  function AuthUserButtons() {
+    console.log("getting authUser: ", authUser)
+    if (authUser == null) {
+      return (
+        <div className={styles.login}>
+          <Button onClick={ () => openPopupPage('/signin') }>SIGN IN</Button>
+          <Button onClick={ () => openPopupPage('/signup') }>SIGN UP</Button>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles.login}>
+          <Button onClick={ () => openPopupPage('/signout') }>SIGN OUT</Button>
+        </div>
+      )
+    }
+  }
+
+  if (!isReady)
+    return (
+      <h5>Loading...</h5>
+    )
   return (
     <div className={styles.container}>
       <Head>
@@ -103,10 +132,8 @@ export default function Home() {
             <a href="/about">ABOUT US</a>
           </div>
 
-          <div className={styles.login}>
-            <Button onClick={ () => openPopupPage('/signin') }>SIGN IN</Button>
-            <Button onClick={ () => openPopupPage('/signup') }>SIGN UP</Button>
-          </div>
+          {/* { () => authUserButtons() } */}
+          <AuthUserButtons />
 
           <div className={styles.hamburger}>
             <div className={styles.hamburgerRow1}></div>
