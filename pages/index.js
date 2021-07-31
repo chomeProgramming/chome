@@ -71,6 +71,9 @@ export default function Home() {
           window.location.reload()
       }
     }, 200)
+    window.addEventListener("beforeunload", e => {
+      popup.close()
+    })
   }
 
   useEffect(async () => {
