@@ -10,8 +10,7 @@ import cookie from 'react-cookie'
 import Loading from '../components/Loading'
 import getCookieJS from '../scripts/getCookie.js'
 
-const fetchUrl = "http://localhost:8000"
-// const fetchUrl = "https://chome-backend.herokuapp.com"
+import { fetchUrl } from "../client"
 
 function getModalStyle() {
   const top = 50
