@@ -1,4 +1,4 @@
 module.exports = {
-    fetchUrl: "https://chome-backend.herokuapp.com",
-    // fetchUrl: "http://localhost:8000",
+    // fetchUrl: "https://chome-backend.herokuapp.com",
+    fetchUrl: "http://localhost:8000",
 }
