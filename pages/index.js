@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import cookie from 'react-cookie'
 
+import Loading from '../components/Loading'
 import getCookieJS from '../scripts/getCookie.js'
 
 const fetchUrl = "http://localhost:8000"
@@ -99,9 +100,7 @@ export default function Home() {
   }
 
   if (!isReady)
-    return (
-      <h5>Loading...</h5>
-    )
+    return <Loading />
   return (
     <div className={styles.container}>
       <Head>
