@@ -119,6 +119,11 @@ export default function Home() {
 
         <div className={styles.feed}>
           <Card
+            img='https://earnable.vercel.app/favicon.png'
+            link='https://earnable.vercel.app'
+            name='Earnable'
+          />
+          {/* <Card
             img='https://opengraph.githubassets.com/d3470dfcd1e48a27c76b539aca1f431a90d1aaf3a74e73392fb3be8297c0f36e/chomeProgramming/yourf1'
             link='https://github.com/chomeProgramming/yourf1'
             name='YourF1'
@@ -140,7 +145,7 @@ export default function Home() {
             img='https://opengraph.githubassets.com/489e3bf4fef925895059fdcf065bbcc5105c7e4c3ff6a5a191c140a678f8ee24/chomeProgramming/quickstart'
             link='https://github.com/chomeProgramming/quickstart'
             name='Quickstart'
-          />
+          /> */}
         </div>
       </main>
     </div>

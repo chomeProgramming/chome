@@ -7,4 +7,5 @@ function getCookieJS() {
     return cookies
 }
 
-export default getCookieJS
+// export default getCookieJS
+module.exports = getCookieJS
