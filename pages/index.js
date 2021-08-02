@@ -9,6 +9,7 @@ import cookie from 'react-cookie'
 
 import Loading from '../components/Loading'
 import getCookieJS from '../scripts/getCookie.js'
+import getAuthUser from '../scripts/getAuthUser.js'
 
 import { fetchUrl } from "../client"
 
@@ -44,15 +45,7 @@ export default function Home() {
   const [username, setUsername] = useState('')
 
   const [isReady, setIsReady] = useState(false)
-  const [authUser, setAuthUser] = useState("")
-
-  async function getAuthUser() {
-    return await (await fetch (fetchUrl+"/user/authUser", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ accessToken: getCookieJS().accessToken })
-    }) ).json()
-  }
+  const [authUser, setAuthUser] = useState(null)
 
   function openPopupPage(relativeUrl)
   {
